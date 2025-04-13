@@ -2,10 +2,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../../context/AuthContext";
 
 const Register = () => {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [msg, setMsg] = useState("");
+  const { Login } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -15,10 +17,17 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://video-progress-tracker-backend.vercel.app/api/register", form);
+      const res = await axios.post(
+        "https://video-progress-tracker-backend.vercel.app/api/register",
+        form
+      );
       setMsg(res.data.message);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.userId);
+      Login({
+        token: localStorage.getItem("token") || res.data.token,
+        userId: localStorage.getItem("userId") || res.data.userId,
+      });
       navigate("/VideoPlayer");
     } catch (err) {
       setMsg(err.response?.data?.message || "Registration failed");

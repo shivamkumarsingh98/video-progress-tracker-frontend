@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [msg, setMsg] = useState("");
+  const { Login } = useAuth();
   const navigate = useNavigate();
 
   const goToLogin = () => {
-    navigate("/Register");
+    navigate("/");
   };
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -18,15 +20,21 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("https://video-progress-tracker-backend.vercel.app/api/login", form);
+      const res = await axios.post(
+        "https://video-progress-tracker-backend.vercel.app/api/login",
+        form
+      );
 
       if (res.data.token || res.data.userId) {
         // Save the token to localStorage
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("userId", res.data.userId);
-        setMsg("Login successful!");
+        Login({
+          token: localStorage.getItem("token") || res.data.token,
+          userId: localStorage.getItem("userId") || res.data.userId,
+        });
 
-        // Navigate to the video page after successful login
+        setMsg("Login successful!");
         navigate("/VideoPlayer");
       } else {
         setMsg("No token received, login failed.");
