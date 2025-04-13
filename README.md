@@ -1,12 +1,59 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# SDE Intern Assignment – Lecture Video Progress Tracker
 
-Currently, two official plugins are available:
+A full-stack application that accurately tracks how much of a lecture video a user has genuinely watched — not just if they played the video to the end. This project ensures unique viewing is tracked, prevents skipping, and supports persistent progress tracking and resume functionality.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🛠 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Frontend:
+- React.js
+- HTML5 Video Player
+- Axios
+- Tailwind CSS (or any other CSS)
+
+### Backend:
+- Node.js
+- Express.js
+- MongoDB (or any other database)
+- CORS
+- Body-parser
+
+---
+
+## 📸 Features
+
+###  Real Progress Tracking:
+- Tracks only **newly watched segments** of the video.
+- Prevents increase in progress if user re-watches or skips.
+- Merges overlapping watched intervals to get accurate progress.
+
+###  Persistent Progress:
+- Stores progress and watched intervals in the database.
+- Resumes video from the last watched position when the user logs in again.
+
+###  Clean UI:
+- A simple and intuitive video interface.
+- Live percentage display of actual progress.
+- Auto-resume video player on reload or revisit.
+
+---
+
+## 📂 Folder Structure
+project-root/ ├── backend/ # Express backend │ ├── controllers/ │ ├── models/ │ ├── routes/ │ └── server.js ├── frontend/ # React frontend │ ├── src/ │ ├── public/ │ └── package.json ├── README.md # This file └── .gitignore
+
+## Run Frontend
+bash
+Copy
+Edit
+cd frontend
+npm install
+npm run dev
+# or
+npm start
+
+
+## Live Demo
+[Insert live URL here]
