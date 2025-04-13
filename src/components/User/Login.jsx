@@ -18,7 +18,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5000/api/login", form);
+      const res = await axios.post("https://video-progress-tracker-backend.vercel.app/api/login", form);
 
       if (res.data.token || res.data.userId) {
         // Save the token to localStorage

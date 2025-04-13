@@ -9,7 +9,7 @@ const VideoPlayer = ({ userId, videoId }) => {
   const [videoDuration, setVideoDuration] = useState(null);
   const [lastPosition, setLastPosition] = useState(0);
 
-  const backendURL = "http://localhost:5000/api";
+  const backendURL = "https://video-progress-tracker-backend.vercel.app/api";
 
   // Fetch progress when component mounts
   useEffect(() => {

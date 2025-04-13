@@ -15,7 +15,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/register", form);
+      const res = await axios.post("https://video-progress-tracker-backend.vercel.app/api/register", form);
       setMsg(res.data.message);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.userId);
